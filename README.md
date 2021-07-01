@@ -4,36 +4,23 @@ This API collects commercial documents such as invoices and credit notes, stores
 
 ## Running the application
 
-### MySql setup
+### Setting up the data source
 
-If you do not have MySql set up on your machine, download the installer from the [MySql Website](https://dev.mysql.com/downloads/mysql/). 
-Select the custom installation option, and then install "MySql Server" and "MySql Workbench". 
+If you do not have Docker installed on your machine, install Docker Desktop via the [Official Website](https://www.docker.com/get-started).
 
-### MySql data source
+You can verify that you have Docker installed on your machine using the following command in the command prompt:
 
-When you run the MySql Workbench, you should have a connection in the "MySql Connections" section of the workbench with a localhost IP and a port number. 
-If you do not see a connection, you will be able to create one by clicking on the "+" button.
+`docker version`
 
-Double-click on the connection you wish to use for this application to connect to it and get access to the databases. 
-Create a database to be used by the CommercialDocumentCollector application using the following command:
+With Docker installed, create and run the container that the CommercialDocumentCollector will use as a data source by running the following command in your IDE's terminal:
 
-`create database [database name]`
+`docker-compose up`
 
-This application will automatically create and use two tables named "credit_notes" and "invoices".
+To connect to the container and access its contents, run the following command via the command prompt:
 
-### Connecting your application to the database
+`docker exec -it db bash`
 
-Open your IDE, and use it to open the base folder of this application.
-Open "application.properties" via "src" -> "main" -> "resources".
-Set the values of the following three properties to the values you have configured in MySql:
-
-```
-spring.datasource.url = jdbc:mysql://localhost:[port number]/[database name]
-spring.datasource.username = [root username]
-spring.datasource.password = [root password]
-```
-
-### Running the application
+### Running the Spring Boot application
 
 Run the application via your IDE. 
 If you are using IntelliJ IDEA, you can press Shift + F10 to run the application.
@@ -46,7 +33,7 @@ After the application runs, note down the port number that shows up in the conso
 
 ### Post batch of invoices
 
-`POST http://localhost:8080/api/v1/invoices`
+`POST /api/v1/invoices`
 
 Request body:
 ```
@@ -65,22 +52,22 @@ Response body:
 ```
 [
     {
-        "id": "6e2b2142-5d80-428c-8ab0-21b92aa9520e",
+        "id": "f30dbe10-5ec0-4c56-9a84-a39af939d9b0",
         "value": 2500.00,
         "invoiceNumber": "INV-0001",
-        "createdAt": "1625105067847"
+        "createdAt": "1625139465519"
     },
     {
-        "id": "31e0e8e5-ca2c-488c-ad60-f6515f90bde6",
+        "id": "8a162b3d-7315-49da-880f-b5b8867448d8",
         "value": 2000.00,
         "invoiceNumber": "INV-0002",
-        "createdAt": "1625105067863"
+        "createdAt": "1625139465534"
     }
 ]
 ```
 ### Post batch of credit notes
 
-`POST http://localhost:8080/api/v1/creditnotes`
+`POST /api/v1/creditnotes`
 
 Request body:
 ```
@@ -100,49 +87,49 @@ Response body:
 ```
 [
     {
-        "id": "289bcbf7-a873-494d-b608-45c1eef4c0fc",
+        "id": "825a6c1a-90ec-4e57-a55f-a93a585364de",
         "value": 1200.00,
         "creditNumber": "CRD-0001",
-        "createdAt": "1625105070842"
+        "createdAt": "1625139469152"
     },
     {
-        "id": "870a838a-6a67-4bcc-958e-152674326a5d",
+        "id": "5bb36ea2-8ed8-4428-b7c9-0110173a7808",
         "value": 1500.00,
         "creditNumber": "CRD-0002",
-        "createdAt": "1625105070844"
+        "createdAt": "1625139469158"
     }
 ]
 ```
 ### Get all commercial documents sorted by creation date/time
 
-`GET http://localhost:8080/api/v1/commercialdocuments`
+`GET /api/v1/commercialdocuments`
 
 Response body:
 ```
 [
     {
-        "id": "6e2b2142-5d80-428c-8ab0-21b92aa9520e",
+        "id": "f30dbe10-5ec0-4c56-9a84-a39af939d9b0",
         "value": 2500.00,
         "invoiceNumber": "INV-0001",
-        "createdAt": "1625105068000"
+        "createdAt": "1625139465519"
     },
     {
-        "id": "31e0e8e5-ca2c-488c-ad60-f6515f90bde6",
+        "id": "8a162b3d-7315-49da-880f-b5b8867448d8",
         "value": 2000.00,
         "invoiceNumber": "INV-0002",
-        "createdAt": "1625105068000"
+        "createdAt": "1625139465534"
     },
     {
-        "id": "289bcbf7-a873-494d-b608-45c1eef4c0fc",
+        "id": "825a6c1a-90ec-4e57-a55f-a93a585364de",
         "value": 1200.00,
         "creditNumber": "CRD-0001",
-        "createdAt": "1625105071000"
+        "createdAt": "1625139469152"
     },
     {
-        "id": "870a838a-6a67-4bcc-958e-152674326a5d",
+        "id": "5bb36ea2-8ed8-4428-b7c9-0110173a7808",
         "value": 1500.00,
         "creditNumber": "CRD-0002",
-        "createdAt": "1625105071000"
+        "createdAt": "1625139469158"
     }
 ]
 ```
