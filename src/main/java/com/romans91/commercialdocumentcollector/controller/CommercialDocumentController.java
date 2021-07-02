@@ -13,8 +13,16 @@ public class CommercialDocumentController {
     @Autowired
     private CommercialDocumentService commercialDocumentService;
 
-    @GetMapping
-    Page<CommercialDocument> getAllCommercialDocuments() {
-        return commercialDocumentService.findAllSortedByCreatedAt();
+    @GetMapping()
+    Iterable<CommercialDocument> getCommercialDocumentsAllSorted() {
+
+        return commercialDocumentService.findAllSorted();
+    }
+
+    @GetMapping(params = { "page", "size" })
+    Page<CommercialDocument> getCommercialDocumentsPaginatedSorted(@RequestParam("page") int page,
+                                                              @RequestParam("size") int size) {
+
+        return commercialDocumentService.findPaginatedAndSorted(page, size);
     }
 }

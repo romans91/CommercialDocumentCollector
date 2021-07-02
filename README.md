@@ -100,26 +100,25 @@ Response body:
     }
 ]
 ```
-### Get all commercial documents sorted by creation date/time
 
-`GET /api/v1/commercialdocuments`
+### Get a page of commercial documents sorted by creation date/time
+
+`GET /api/v1/commercialdocuments?page=[integer]&size=[integer]`
+
+### URL Params
+
+Page: Integer
+
+Example:``page=[0]``
+
+Size: Integer
+
+Example:``size=[0]``
 
 Response body:
 ```
 {
     "content": [
-        {
-            "id": "f30dbe10-5ec0-4c56-9a84-a39af939d9b0",
-            "value": 2500.00,
-            "invoiceNumber": "INV-0001",
-            "createdAt": "1625139465519"
-        },
-        {
-            "id": "8a162b3d-7315-49da-880f-b5b8867448d8",
-            "value": 2000.00,
-            "invoiceNumber": "INV-0002",
-            "createdAt": "1625139465534"
-        },
         {
             "id": "825a6c1a-90ec-4e57-a55f-a93a585364de",
             "value": 1200.00,
@@ -140,23 +139,57 @@ Response body:
             "empty": false
         },
         "offset": 0,
-        "pageSize": 4,
         "pageNumber": 0,
-        "paged": true,
-        "unpaged": false
+        "pageSize": 2,
+        "unpaged": false,
+        "paged": true
     },
-    "totalPages": 1,
+    "last": false,
+    "totalPages": 2,
     "totalElements": 4,
-    "last": true,
-    "size": 4,
+    "size": 2,
     "number": 0,
     "sort": {
         "sorted": true,
         "unsorted": false,
         "empty": false
     },
-    "numberOfElements": 4,
     "first": true,
+    "numberOfElements": 2,
     "empty": false
 }
+```
+
+### Get all commercial documents sorted by creation date/time
+
+`GET /api/v1/commercialdocuments`
+
+Response body:
+```
+[
+    {
+        "id": "f30dbe10-5ec0-4c56-9a84-a39af939d9b0",
+        "value": 2500.00,
+        "invoiceNumber": "INV-0001",
+        "createdAt": "1625139465519"
+    },
+    {
+        "id": "8a162b3d-7315-49da-880f-b5b8867448d8",
+        "value": 2000.00,
+        "invoiceNumber": "INV-0002",
+        "createdAt": "1625139465534"
+    },
+    {
+        "id": "825a6c1a-90ec-4e57-a55f-a93a585364de",
+        "value": 1200.00,
+        "creditNumber": "CRD-0001",
+        "createdAt": "1625139469152"
+    },
+    {
+        "id": "5bb36ea2-8ed8-4428-b7c9-0110173a7808",
+        "value": 1500.00,
+        "creditNumber": "CRD-0002",
+        "createdAt": "1625139469158"
+    }
+]
 ```

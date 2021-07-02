@@ -5,7 +5,6 @@ import com.romans91.commercialdocumentcollector.repository.CommercialDocumentRep
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +14,13 @@ public class CommercialDocumentService {
     @Autowired
     private CommercialDocumentRepository commercialDocumentRepository;
 
-    public Page<CommercialDocument> findAllSortedByCreatedAt() {
+    public Page<CommercialDocument> findPaginatedAndSorted(int page, int size) {
 
-        Pageable sortByCreatedAt = PageRequest.of(0, (int)commercialDocumentRepository.count(), Sort.by("createdAt"));
+        return commercialDocumentRepository.findAll(PageRequest.of(page, size, Sort.by("createdAt")));
+    }
 
-        return commercialDocumentRepository.findAll(sortByCreatedAt);
+    public Iterable<CommercialDocument> findAllSorted() {
+
+        return commercialDocumentRepository.findAll(Sort.by("createdAt"));
     }
 }
