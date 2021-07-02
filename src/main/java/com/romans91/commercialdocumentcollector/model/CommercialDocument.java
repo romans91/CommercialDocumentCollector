@@ -11,8 +11,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@MappedSuperclass
-public class CommercialDocument implements Comparable<CommercialDocument> {
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class CommercialDocument {
 
     @Id
     @JsonProperty
@@ -32,10 +33,5 @@ public class CommercialDocument implements Comparable<CommercialDocument> {
     @JsonGetter("createdAt")
     public String getCreatedAt() {
         return String.valueOf(createdAt.getTime());
-    }
-
-    @Override
-    public int compareTo(CommercialDocument o) {
-        return this.createdAt.compareTo(o.createdAt);
     }
 }

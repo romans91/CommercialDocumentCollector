@@ -1,30 +1,24 @@
 package com.romans91.commercialdocumentcollector.service;
 
 import com.romans91.commercialdocumentcollector.model.CommercialDocument;
+import com.romans91.commercialdocumentcollector.repository.CommercialDocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class CommercialDocumentService {
 
     @Autowired
-    private CreditNoteService creditNoteService;
+    private CommercialDocumentRepository commercialDocumentRepository;
 
-    @Autowired
-    private InvoiceService invoiceService;
+    public Page<CommercialDocument> findAllSortedByCreatedAt() {
 
-    public List<? extends CommercialDocument> findAllSortedByCreatedAt() {
+        Pageable sortByCreatedAt = PageRequest.of(0, (int)commercialDocumentRepository.count(), Sort.by("createdAt"));
 
-        List<? extends CommercialDocument> commercialDocuments =
-                Stream.concat(creditNoteService.findAll().stream(), invoiceService.findAll().stream())
-                        .collect(Collectors.toList());
-
-        Collections.sort(commercialDocuments);
-        return commercialDocuments;
+        return commercialDocumentRepository.findAll(sortByCreatedAt);
     }
 }
