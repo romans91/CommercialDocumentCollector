@@ -109,11 +109,11 @@ Response body:
 
 Page: Integer
 
-Example:``page=[0]``
+Example:``page=0``
 
 Size: Integer
 
-Example:``size=[0]``
+Example:``size=2``
 
 Response body:
 ```
