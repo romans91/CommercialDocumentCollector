@@ -18,8 +18,7 @@ import javax.json.JsonValue;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -64,6 +63,20 @@ public class CreditNoteControllerTest {
         for (JsonValue creditNote: creditNotes) {
             actions.andExpect(jsonPath("$[" + index++ + "].id",
                     matchesPattern(TestUtil.UUID_PATTERN)));
+        }
+    }
+
+    @Test
+    public void testPostCreditNotesValidationFailure() throws Exception {
+        JsonArray invalidCreditNoteBatches = TestUtil.getSampleInvalidCreditNotesJson();
+
+        for (int i = 0; i < invalidCreditNoteBatches.size(); i++) {
+            JsonArray invalidCreditNoteBatch = invalidCreditNoteBatches.getJsonArray(i);
+
+            mvc.perform(post("/api/v1/creditnotes")
+                    .content(invalidCreditNoteBatch.toString())
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest());
         }
     }
 

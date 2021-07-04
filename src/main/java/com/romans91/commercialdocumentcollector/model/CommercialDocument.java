@@ -24,7 +24,8 @@ public abstract class CommercialDocument {
     @Column(updatable = false, nullable = false, columnDefinition = "DATETIME(6)")
     private Timestamp createdAt;
 
-    @Digits(integer=6, fraction=2, message = "Please enter a decimal value with up to 2 fractional digits.")
+    @Digits(integer=6, fraction=2,
+            message = "Please enter a decimal value with up to 2 fractional digits, and no more than 6 integer digits.")
     @DecimalMin(value = "0.01", message = "Please enter a value of at least $0.01.")
     protected BigDecimal value;
 

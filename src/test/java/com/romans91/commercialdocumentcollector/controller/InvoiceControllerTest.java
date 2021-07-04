@@ -66,6 +66,20 @@ public class InvoiceControllerTest {
     }
 
     @Test
+    public void testPostInvoicesConstraintViolation() throws Exception {
+        JsonArray invalidInvoiceBatches = TestUtil.getSampleInvalidInvoicesJson();
+
+        for (int i = 0; i < invalidInvoiceBatches.size(); i++) {
+            JsonArray invalidInvoiceBatch = invalidInvoiceBatches.getJsonArray(i);
+
+            mvc.perform(post("/api/v1/invoices")
+                    .content(invalidInvoiceBatch.toString())
+                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isBadRequest());
+        }
+    }
+
+    @Test
     public void testPostInvoicesResponseValue() throws Exception {
         JsonArray invoices = TestUtil.getSampleInvoicesJson();
 

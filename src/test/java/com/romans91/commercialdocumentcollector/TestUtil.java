@@ -47,6 +47,18 @@ public class TestUtil {
         return arrayBuilder.build();
     }
 
+    public static JsonArray getSampleInvalidCreditNotesJson() {
+        return JSON_BUILDER_FACTORY.createArrayBuilder()
+                .add(JSON_BUILDER_FACTORY.createArrayBuilder()
+                        .add(JSON_BUILDER_FACTORY.createObjectBuilder()
+                                .add("creditNumber", "CRD-0000")
+                                .add("value", "2500.001")))
+                .add(JSON_BUILDER_FACTORY.createArrayBuilder()
+                        .add(JSON_BUILDER_FACTORY.createObjectBuilder()
+                                .add("creditNumber", "CRD-0001")
+                                .add("value", "25000000.00"))).build();
+    }
+
     public static List<Invoice> getSampleInvoices() {
         return Arrays.asList(
                         new Invoice("INV-0000", new BigDecimal(2500)),
@@ -68,6 +80,23 @@ public class TestUtil {
         }
 
         return arrayBuilder.build();
+    }
+
+    public static JsonArray getSampleInvalidInvoicesJson() {
+
+        return JSON_BUILDER_FACTORY.createArrayBuilder()
+                .add(JSON_BUILDER_FACTORY.createArrayBuilder()
+                        .add(JSON_BUILDER_FACTORY.createObjectBuilder()
+                                .add("invoiceNumber", "INV-0000")
+                                .add("value", "2500.001")))
+                .add(JSON_BUILDER_FACTORY.createArrayBuilder()
+                        .add(JSON_BUILDER_FACTORY.createObjectBuilder()
+                                .add("invoiceNumber", "INV-0001")
+                                .add("value", "25000000.00")))
+                .add(JSON_BUILDER_FACTORY.createArrayBuilder()
+                        .add(JSON_BUILDER_FACTORY.createObjectBuilder()
+                                .add("invoiceNumber", "INV-0002")
+                                .add("value", "Text in a numeric input field."))).build();
     }
 
     public static List<CommercialDocument> getSampleCommercialDocuments() {

@@ -19,8 +19,8 @@ public class Invoice extends CommercialDocument {
         return this.invoiceNumber;
     }
 
-    public Invoice(String creditNumber, BigDecimal value) {
-        this.invoiceNumber = creditNumber;
+    public Invoice(String invoiceNumber, BigDecimal value) {
+        this.invoiceNumber = invoiceNumber;
         this.value = value;
     }
 
