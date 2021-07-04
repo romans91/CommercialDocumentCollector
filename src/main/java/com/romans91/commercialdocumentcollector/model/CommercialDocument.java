@@ -16,7 +16,6 @@ import java.util.UUID;
 public abstract class CommercialDocument {
 
     @Id
-    @JsonProperty
     @GeneratedValue(generator = "UUID")
     @Column(updatable = false, nullable = false, columnDefinition = "BINARY(16)")
     private UUID id;
@@ -25,13 +24,22 @@ public abstract class CommercialDocument {
     @Column(updatable = false, nullable = false, columnDefinition = "DATETIME(6)")
     private Timestamp createdAt;
 
-    @JsonProperty
     @Digits(integer=6, fraction=2, message = "Please enter a decimal value with up to 2 fractional digits.")
     @DecimalMin(value = "0.01", message = "Please enter a value of at least $0.01.")
-    private BigDecimal value;
+    protected BigDecimal value;
 
     @JsonGetter("createdAt")
     public String getCreatedAt() {
         return String.valueOf(createdAt.getTime());
+    }
+
+    @JsonGetter("id")
+    public UUID getId() {
+        return id;
+    }
+
+    @JsonGetter("value")
+    public double getValue() {
+        return value.doubleValue();
     }
 }
