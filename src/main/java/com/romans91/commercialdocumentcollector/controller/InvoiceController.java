@@ -22,7 +22,8 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @PostMapping
-    List<Invoice> importBatch(@RequestBody @NotEmpty(message = "Please send a batch of invoices with at least one.") List<@Valid Invoice> newInvoices) {
+    List<Invoice> importBatch(@RequestBody @NotEmpty(message = "Please send a batch of invoices with at least one.")
+                                      List<@Valid Invoice> newInvoices) {
         return invoiceService.saveInvoices(newInvoices);
     }
 }

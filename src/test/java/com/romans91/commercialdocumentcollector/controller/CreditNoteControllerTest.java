@@ -40,8 +40,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesResponseCount() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -53,8 +52,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesResponseId() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -84,8 +82,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesResponseValue() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -101,8 +98,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesResponseCreditNumber() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -118,8 +114,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesResponseCreatedAt() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" )
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -135,8 +130,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesRepositoryCount() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -148,8 +142,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesRepositoryId() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -164,8 +157,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesRepositoryValue() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -180,8 +172,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesRepositoryCreditNumber() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -196,8 +187,7 @@ public class CreditNoteControllerTest {
     public void testPostCreditNotesRepositoryCreatedAt() throws Exception {
         JsonArray creditNotes = TestUtil.getSampleCreditNotesJson();
 
-        ResultActions actions = mvc.perform(post("/api/v1/creditnotes" +
-                "")
+        ResultActions actions = mvc.perform(post("/api/v1/creditnotes")
                 .content(creditNotes.toString())
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

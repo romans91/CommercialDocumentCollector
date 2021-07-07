@@ -20,7 +20,8 @@ public class CreditNoteController {
     private CreditNoteService creditNoteService;
 
     @PostMapping()
-    List<CreditNote> importBatch(@RequestBody @NotEmpty(message = "Please send a batch of credit notes with at least one.") List<@Valid CreditNote> newCreditNotes) {
+    List<CreditNote> importBatch(@RequestBody @NotEmpty(message = "Please send a batch of credit notes with at least one.")
+                                         List<@Valid CreditNote> newCreditNotes) {
         return creditNoteService.saveCreditNotes(newCreditNotes);
     }
 }
